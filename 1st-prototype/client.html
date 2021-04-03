@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Meu primeiro jogo Multiplayer</title>
+
+    <style>
+      #screen {
+        border: 1px solid #CCC;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <canvas id="screen" width="10" height="10"></canvas>
+  </body>
+
+  <script>
+    const screen = document.getElementById('screen')
+    const context = screen.getContext('2d')
+    
+    const color = 'red'
+    const positionX = 125
+    const positionY = 125
+    const width = 250
+    const height = 250
+
+    context.fillStyle = color
+    context.fillRect(positionX, positionY, width, height)
+
+
+
+
+  </script>
+
+</html>
