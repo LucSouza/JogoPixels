@@ -1,0 +1,47 @@
+    <html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Catch the fruit</title>
+
+        <style>
+        #screen {
+            border: 10px solid #CCC;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 400px;
+            height: 400px;
+
+        }
+        #title{
+            color: green;
+        }
+        </style>
+
+    </head>
+
+    <body>
+        <h3 id="title">
+        Move and catch the fruits before other players
+        </h3>
+        
+        <canvas id="screen" width="10" height="10"></canvas>
+    
+        <script type="module">
+            import createKeyboardListener from './keyboard-listener.js'
+            import createGame from './game.js'
+            import renderScreen from './render-screen.js'
+            
+            const game = createGame()
+            const keyboardListener = createKeyboardListener(document)
+            keyboardListener.subscribe(game.movePlayer)
+            
+            const screen = document.getElementById('screen')
+            renderScreen(screen, game, requestAnimationFrame)
+            
+            game.addPlayer({playerId: 'player1', playerX: 0, playerY: 0})
+            game.addFruit({fruitId: 'player1', fruitX: 0, fruitY: 0})
+        </script>
+    </body>
+
+    </html>
