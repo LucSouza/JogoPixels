@@ -17,6 +17,7 @@
             color: green;
         }
         </style>
+        <script src="/socket.io/socket.io.js"></script>
 
     </head>
 
@@ -38,9 +39,21 @@
             
             const screen = document.getElementById('screen')
             renderScreen(screen, game, requestAnimationFrame)
-            
-            game.addPlayer({playerId: 'player1', playerX: 0, playerY: 0})
-            game.addFruit({fruitId: 'player1', fruitX: 0, fruitY: 0})
+
+            const socket = io()
+
+            socket.on('connect', () => {
+                const playerId = socket.id
+                console.log(`Player connected on Client with id: ${playerId}`)
+
+            })
+
+            socket.on('setup', (state) =>{
+                console.log(`> Receiving "setup" event from Server`)
+                console.log(state)
+                game.state = state
+            })
+           
         </script>
     </body>
 
